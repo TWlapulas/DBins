@@ -16,6 +16,13 @@ class Select {
 
 		function count() { return sizeof($this->rows); }
 
+		function column($item) {
+				if (in_array($item, $this->head))
+						return array_column($this->rows, $item);
+				else
+						return array();
+		}
+	
 		function get($length=0) {
 				if ($length == 0) return $this->rows;
 				else return array_slice($this->rows, 0, $length);		
@@ -103,6 +110,7 @@ class Form {
 				array_push($this->rows, $row);
 				array_push($this->keys, $row[$this->head[0]]);
 				$this->changed = true;
+				unset($this->Select);
 		}
 
 		function delete($key) {
@@ -115,6 +123,7 @@ class Form {
 						$this->keys = array_values($this->keys);
 				}
 				$this->changed = true;
+				unset($this->Select);
 		}
 
 		function modify($key, $assoArray) {
@@ -127,6 +136,7 @@ class Form {
 						$this->append($original);
 				} else throw new Exception("Modify failed: illegal action exists");
 				$this->changed = true;
+				unset($this->Select);
 		}
 
 		function select_all() {
