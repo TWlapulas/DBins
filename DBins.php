@@ -113,6 +113,13 @@ class Form {
 				unset($this->Select);
 		}
 
+		function clear() {
+				unset($this->rows);
+				unset($this->keys);
+				$this->changed = true;
+				unset($this->Select);
+		}
+	
 		function delete($key) {
 				if (false === $idx = array_search($key, $this->keys)) {
 						return false;
