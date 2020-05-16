@@ -114,8 +114,8 @@ class Form {
 		}
 
 		function clear() {
-				unset($this->rows);
-				unset($this->keys);
+				$this->rows = array();
+				$this->keys = array();
 				$this->changed = true;
 				unset($this->Select);
 		}
